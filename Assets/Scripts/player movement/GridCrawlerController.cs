@@ -35,16 +35,14 @@ public class GridCrawlerController : MonoBehaviour
             .With("Right", "<Keyboard>/d").With("Right", "<Keyboard>/rightArrow");
     }
 
-
     void Start()
     {
-        // THIS IS NEW: Instantly snap to the closest grid node when the game starts
+        // Instantly snap to the closest grid node when the game starts
         if (gridManager != null)
         {
             transform.position = gridManager.GetClosestNodePosition(transform.position);
         }
     }
-
 
     void OnEnable() => moveAction.Enable();
     void OnDisable() => moveAction.Disable();
@@ -91,7 +89,7 @@ public class GridCrawlerController : MonoBehaviour
     private IEnumerator PerformMove(Vector3 targetDirection, Vector3? targetPos)
     {
         isActing = true;
-        if (cameraScript != null) cameraScript.isAutoCentering = true; // Center camera
+        // Notice: isAutoCentering has been removed from here so you can look around while moving/bumping
 
         if (targetPos.HasValue) // Valid space, move forward
         {
@@ -132,7 +130,6 @@ public class GridCrawlerController : MonoBehaviour
             transform.position = startPos;
         }
 
-        if (cameraScript != null) cameraScript.isAutoCentering = false; // Release camera
         yield return new WaitForSeconds(postActionCooldown);
         isActing = false;
     }
@@ -140,7 +137,7 @@ public class GridCrawlerController : MonoBehaviour
     private IEnumerator PerformTurn(float angle)
     {
         isActing = true;
-        if (cameraScript != null) cameraScript.isAutoCentering = true; // Center camera
+        if (cameraScript != null) cameraScript.isAutoCentering = true; // Center camera on turns
 
         Quaternion startRot = transform.rotation;
         Quaternion targetRot = startRot * Quaternion.Euler(0f, angle, 0f);
