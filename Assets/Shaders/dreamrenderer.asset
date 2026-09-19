@@ -72,7 +72,7 @@ MonoBehaviour:
     Source: 1
     NormalSamples: 2
     Intensity: 3
-    DirectLightingStrength: 0.33
+    DirectLightingStrength: 0
     Radius: 2
     Samples: 0
     BlurQuality: 0
@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 770acbaed70db4ad696458511aa3f084, type: 3}
   m_Name: FlatKitFog
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   settings: {fileID: 11400000, guid: b19a3cd3624ad41b79a80b2030625150, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
